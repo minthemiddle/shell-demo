@@ -7,7 +7,9 @@
     <div class="max-w-lg mx-auto mt-8 p-4 bg-black text-white rounded-lg shadow">
         <h1 class="text-xl font-semibold mb-4">Shell Demo</h1>
         <div class="border border-gray-300 p-2 rounded-lg">
-            <div id="output" class="h-40 overflow-y-auto"></div>
+            <div id="outputContainer" class="border border-gray-300 p-2 rounded h-40 overflow-y-auto">
+                <div id="output"></div>
+            </div>
             <input
                 id="input"
                 class="mt-2 w-full border-none outline-none focus:ring-0 resize-none bg-black text-white"
@@ -20,6 +22,7 @@
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
+        const outputContainer = document.getElementById('outputContainer');
         const outputElement = document.getElementById('output');
         let currentDirectory = '/';
         
@@ -97,6 +100,9 @@
 
             // Update the output with the history
             outputElement.innerHTML = history.map(line => `<p>${line}</p>`).join('');
+
+            // Scroll the output container to the bottom
+            outputContainer.scrollTop = outputContainer.scrollHeight;
         }
     </script>
 </body>
