@@ -96,6 +96,13 @@ Last login: Sun Jul 23 12:24:33 2023 from 5.180.61.100<br>
                         result = 'Usage: cd directory';
                     }
                     break;
+                case 'ssh':
+                    if (args.length === 2) {
+                        result = sshOutput;
+                    } else {
+                        result = 'Usage: ssh ip';
+                    }
+                    break;
                 case 'touch':
                     if (args.length === 2) {
                         result = `Created file: ${currentDirectory}${args[1]}`;
