@@ -12,4 +12,5 @@ With demo content.
 - `less`
 - `host`
 - `touch`
+- `ssh`
 - `clear`
