@@ -24,6 +24,44 @@
     <script>
         const outputContainer = document.getElementById('outputContainer');
         const outputElement = document.getElementById('output');
+        const sshOutput = `
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-146-generic x86_64)<br>
+<br>
+ * Documentation:  https://help.ubuntu.com<br>
+ * Management:     https://landscape.canonical.com<br>
+ * Support:        https://ubuntu.com/advantage<br>
+<br>
+  System information as of Wed 06 Sep 2023 11:19:33 AM CEST<br>
+<br>
+  System load:           0.09<br>
+  Usage of /:            44.2% of 19.51GB<br>
+  Memory usage:          37%<br>
+  Swap usage:            15%<br>
+  Processes:             144<br>
+  Users logged in:       0<br>
+  IPv4 address for ens3: 94.125.231.129<br>
+  IPv4 address for ens3: 10.126.215.182<br>
+  IPv6 address for ens3: 2e02:4b41:5ea0:edb3::1<br>
+<br>
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s<br>
+   just raised the bar for easy, resilient and secure K8s cluster deployment.<br>
+<br>
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge<br>
+<br>
+Expanded Security Maintenance for Applications is not enabled.<br>
+<br>
+5 updates can be applied immediately.<br>
+<br>
+7 additional security updates can be applied with ESM Apps.<br>
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm<br>
+<br>
+New release '22.04.3 LTS' available.<br>
+Run 'do-release-upgrade' to upgrade to it.<br>
+<br>
+<br>
+*** System restart required ***<br>
+Last login: Sun Jul 23 12:24:33 2023 from 5.180.61.100<br>
+-bash: warning: setlocale: LC_ALL: cannot change locale (de_DE.utf-8)<br>`;
         let currentDirectory = '/';
         
         function executeCommand(command, history) {
