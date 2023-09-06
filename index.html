@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+<body class="bg-gray-700 font-mono">
+    <div class="max-w-lg mx-auto mt-8 p-4 bg-black text-white rounded-lg shadow">
+        <h1 class="text-xl font-semibold mb-4">Shell Demo</h1>
+        <div class="border border-gray-300 p-2 rounded-lg">
+            <div id="output" class="h-40 overflow-y-auto"></div>
+            <input
+                id="input"
+                class="w-full border-none outline-none focus:ring-0 resize-none bg-black text-white"
+                placeholder="Enter a command..."
+                x-data="{ command: '', history: [] }"
+                x-on:keydown.enter="executeCommand(command, history); command = '';"
+                x-model="command"
+            >        </div>
+    </div>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        const outputElement = document.getElementById('output');
+        let currentDirectory = '/';
+        
+        function executeCommand(command, history) {
+            command = command.trim(); // Remove leading/trailing spaces
+            if (command === '') {
+                return; // Ignore empty commands
+            }
+
+            // Add the command to the history
+            history.push(`$ <strong>${command}</strong>`);
+
+            const args = command.split(' ');
+            const cmd = args[0];
+
+            let result;
+            
+            switch (cmd) {
+                case 'clear':
+                    history.length = 0;
+                    result = '';
+                    break;
+                case 'pwd':
+                    result = currentDirectory;
+                    break;
+                case 'ls':
+                    result = 'file1.txt  file2.txt  directory/';
+                    break;
+                case 'cd':
+                    if (args.length === 2) {
+                        result = `Created file: ${currentDirectory}${args[1]}`;
+                    } else {
+                        result = 'Usage: cd directory';
+                    }
+                    break;
+                case 'touch':
+                    if (args.length === 2) {
+                        result = `Created file: ${currentDirectory}${args[1]}`;
+                    } else {
+                        result = 'Usage: touch filename';
+                    }
+                    break;
+                case 'less':
+                    if (args.length === 2) {
+                        result = `This is the content<br>of the file.`;
+                    } else {
+                        result = 'Usage: less filename';
+                    }
+                    break;
+                case 'cp':
+                    if (args.length === 3) {
+                        result = `Copied ${args[1]} to ${args[2]}`;
+                    } else {
+                        result = 'Usage: cp source destination';
+                    }
+                    break;
+                case 'host':
+                    if (args.length === 2) {
+                        result = `host ${args[1]}<br>
+                            ${args[1]} has address 216.58.209.14<br>
+                            ${args[1]} has IPv6 address 2a00:1450:401b:808::200e<br>
+                            ${args[1]} mail is handled by 10 smtp.mail.com.`;
+                    } else {
+                        result = `Usage: host url`;
+                    }
+                    break;
+                // ... (other command cases)
+                default:
+                    result = `Command not found: ${cmd}`;
+                    break;
+            }
+
+            // Add the result to the history
+            history.push(result);
+
+            // Update the output with the history
+            outputElement.innerHTML = history.map(line => `<p>${line}</p>`).join('');
+        }
+    </script>
+</body>
+</html>
