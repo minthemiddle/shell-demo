@@ -10,7 +10,7 @@
             <div id="output" class="h-40 overflow-y-auto"></div>
             <input
                 id="input"
-                class="w-full border-none outline-none focus:ring-0 resize-none bg-black text-white"
+                class="mt-2 w-full border-none outline-none focus:ring-0 resize-none bg-black text-white"
                 placeholder="Enter a command..."
                 x-data="{ command: '', history: [] }"
                 x-on:keydown.enter="executeCommand(command, history); command = '';"
